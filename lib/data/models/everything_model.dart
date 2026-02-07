@@ -1,32 +1,32 @@
 
 ///source model
-class SourceModel{
+class SourceModel1{
 
   String id;
   String name;
 
-  SourceModel({required this.id, required this.name});
+  SourceModel1({required this.id, required this.name});
 
-  factory SourceModel.fromJson(Map<String, dynamic> json){
-    return SourceModel(
+  factory SourceModel1.fromJson(Map<String, dynamic> json){
+    return SourceModel1(
       id:json['id'],
     name:json['name'],
     );
   }
 }
 
-///article model
-class ArticleModel{
+
+class ArticleModel1{
   String author;
   String content;
   String description;
   String publishedAt;
-  SourceModel source;
+  SourceModel1 source;
   String title;
   String url;
   String urlToImage;
 
-  ArticleModel({
+  ArticleModel1({
     required this.author,
     required this.content,
     required this.description,
@@ -38,8 +38,8 @@ class ArticleModel{
 });
 
 
-  factory ArticleModel.fromJson(Map<String, dynamic> json){
-    return ArticleModel(
+  factory ArticleModel1.fromJson(Map<String, dynamic> json){
+    return ArticleModel1(
       author:json['author'],
       content:json['content'],
       description:json['description'],
@@ -49,18 +49,14 @@ class ArticleModel{
       url:json['url'],
       urlToImage:json['urlToImage']
     );
-
   }
-
-
-
 }
 
-///
+
 class EveryThingData{
   String status;
   int totalResults;
-  List<ArticleModel> articles;
+  List<ArticleModel1> articles;
 
   EveryThingData({
     required this.status,
@@ -70,16 +66,17 @@ class EveryThingData{
 
   factory EveryThingData.fromJson(Map<String, dynamic>json){
 
-    List<ArticleModel> mArticles = [];
+    List<EveryThingData> mArticles = [];
 
     for(Map<String, dynamic> article in json['articles']){
-      mArticles.add(ArticleModel.fromJson(article));
+    mArticles.add(EveryThingData.fromJson(article));
     }
 
     return EveryThingData(
       status:json['status'],
       totalResults:json['totalResults'],
-      articles:mArticles,
+      articles:json['articles'],
+
     );
 
   }

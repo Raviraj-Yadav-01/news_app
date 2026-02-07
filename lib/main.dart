@@ -1,8 +1,22 @@
 
 import 'package:flutter/material.dart';
-import 'Screen/dashBoard/navigation_page/homePage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/Screen/splash_page/splash_page.dart';
+import 'package:news_app/data/repositories/news_repository.dart';
+import 'package:news_app/data/service/api_service.dart';
+import 'Bloc/news_bloc.dart';
+import 'Screen/dashBoard/dashboard.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(
+      MultiBlocProvider(
+          providers:[
+            BlocProvider(
+              create: (context) => NewsBloc(NewsRepository(NewsApiService())),
+            ),
+          ], child:MyApp()
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,8 +25,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      home: HomePage(),
+      debugShowCheckedModeBanner: false,
+      home: SplashPage(),
     );
   }
 }

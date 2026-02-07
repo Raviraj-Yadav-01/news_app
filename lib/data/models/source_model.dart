@@ -34,6 +34,8 @@ class SourceModel{
 
 }
 
+
+///source data model
 class SourceDataModel {
   String status;
   List<SourceModel> sources;
@@ -53,13 +55,10 @@ class SourceDataModel {
 
     return SourceDataModel(
       status:json['status'],
-      sources:json['sources'],
+      sources:getSources,
     );
   }
 }
-
-
-
 
 
 

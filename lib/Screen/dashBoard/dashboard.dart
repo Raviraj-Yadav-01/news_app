@@ -13,7 +13,7 @@ class DashBoardPage extends StatefulWidget{
 
 class _DashBoardPageState extends State<DashBoardPage> {
 
-  int selectedIndex = 1;
+  int selectedIndex = 0;
 
   List<Widget> navPages = [
     HomePage(),
@@ -25,9 +25,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*appBar:AppBar(
-        title:Text("News DashBoard"),
-      ),*/
 
       body:navPages[selectedIndex],
 
@@ -49,9 +46,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
         items:[
           BottomNavigationBarItem(icon:Icon(Icons.home),label:"Home"),
           BottomNavigationBarItem(icon:Icon(Icons.explore),label:"Home"),
-          BottomNavigationBarItem(icon:Icon(Icons.notifications_active_outlined),label:"Home"),
+          BottomNavigationBarItem(icon:Icon(Icons.notifications_active_outlined),label:"Notifications"),
           BottomNavigationBarItem(icon:Icon(Icons.settings),label:"Home"),
-
         ]
       ),
 
