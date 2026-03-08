@@ -10,22 +10,25 @@ class NewsInitialState extends NewsState {}
 class NewsLoadingState extends NewsState {}
 
 ///for Headlines news
-class NewsHeadLinesLoaded extends NewsState {
+class NewsHeadLinesLoadedState extends NewsState {
   final List<ArticleModel> headlines;
-  NewsHeadLinesLoaded(this.headlines);
+  NewsHeadLinesLoadedState(this.headlines);
 }
+
 
 /// Used for Category News
-class NewsCategoryLoaded extends NewsState {
-  final List<SourceModel> categories;
-  NewsCategoryLoaded(this.categories);
+class NewsCategoryLoadedState extends NewsState {
+  final List<ArticleModel1> categories;
+  NewsCategoryLoadedState(this.categories);
 }
 
+
 /// Used for Search News
-class NewsSearchLoaded extends NewsState {
-  final List<ArticleModel1> searchResult;
-  NewsSearchLoaded(this.searchResult);
+class NewsSearchLoadedState extends NewsState {
+  final List<SourceModel> searchResult;
+  NewsSearchLoadedState(this.searchResult);
 }
+
 
 //for errors
 class NewsError extends NewsState {

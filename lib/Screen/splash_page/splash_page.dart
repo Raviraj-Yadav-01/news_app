@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:news_app/Screen/dashBoard/dashboard.dart';
 
+import '../../getstart_page.dart';
+
 class SplashPage extends StatefulWidget{
   const SplashPage({super.key});
 
@@ -16,7 +18,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Timer(Duration(seconds:4), (){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>DashBoardPage()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>GetStartPage()));
     });
   }
 

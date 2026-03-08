@@ -1,16 +1,23 @@
 
-abstract class NewsEvent{}
+abstract class NewsEvent{
 
+}
 
+//top headlines
 class FetchTopNews extends NewsEvent{
+
 }
 
-class FetchCategoryNews extends NewsEvent{
-  final String category;
-  FetchCategoryNews(this.category);
-}
-
+//search news
 class FetchSearchNews extends NewsEvent{
   final String query;
-FetchSearchNews(this.query);
+  FetchSearchNews(this.query);
+}
+
+//category news
+class FetchCategoryNews extends NewsEvent{
+  final String category;
+FetchCategoryNews(this.category);
+
+
 }

@@ -21,29 +21,22 @@ class GetStartPage extends StatelessWidget {
             ),
           ),
 
-          Positioned(
-            bottom: 50,
-            right: 10,
-            left: 10,
+          Positioned(bottom: 50,
+            right: 10, left: 10,
             child: Column(
               children: [
                 SizedBox(
                   width: 500,
-                  child: Text(
-                    "Don't Miss What Happen in Another Part of The World",
+                  child: Text("Don't Miss What Happen in Another Part of The World",
                     maxLines: 2,
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 20, color: Colors.white,
+                      fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(height: 11),
 
                 SizedBox( width: 500,
-                  child: Text(
-                    "hear, see, watch something in the world using Tiding and share it with your family or friend",
+                  child: Text("hear, see, watch something in the world using Tiding and share it with your family or friend",
                     maxLines: 2,
                     style: TextStyle(
                       fontSize: 12, color: Colors.white,

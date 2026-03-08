@@ -11,25 +11,17 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>{
 
   NewsBloc(this.repo):super(NewsInitialState()){
 
+
+
+    //For top news
     on<FetchTopNews>((event, emit)async{
       emit(NewsLoadingState());
 
       try {
         final headlines = await repo.getTopNews();
-        emit(NewsHeadLinesLoaded(headlines));
+        emit(NewsHeadLinesLoadedState(headlines));
       } catch (e) {
         emit(NewsError(e.toString()));
-      }
-    });
-
-
-    on<FetchCategoryNews>((event, emit)async{
-      emit(NewsLoadingState());
-      try{
-        final categories = await repo.getCategoryNews(event.category);
-        emit(NewsCategoryLoaded(categories));
-      }catch(errorMessage){
-        emit(NewsError(errorMessage.toString()));
       }
     });
 
@@ -37,8 +29,20 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>{
     on<FetchSearchNews>((event, emit)async{
       emit(NewsLoadingState());
       try{
-        final result = await repo.getSearchNews(event.query);
-        emit(NewsSearchLoaded(result));
+        final searchResult = await repo.getSearchNews(event.query);
+        emit(NewsSearchLoadedState(searchResult));
+      }catch(errorMessage){
+        emit(NewsError(errorMessage.toString()));
+      }
+    });
+
+
+    ///Gor category news
+    on<FetchCategoryNews>((event, emit)async{
+      emit(NewsLoadingState());
+      try{
+        final categories = await repo.getCategoryNews(event.category);
+        emit(NewsCategoryLoadedState(categories));
       }catch(errorMessage){
         emit(NewsError(errorMessage.toString()));
       }
