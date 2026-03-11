@@ -11,9 +11,7 @@ void main() {
   runApp(
       MultiBlocProvider(
           providers:[
-
             BlocProvider( create: (context) => NewsBloc(NewsRepository(NewsApiService()))),
-
           ], child:MyApp()
       )
   );

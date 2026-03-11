@@ -30,8 +30,6 @@ class _HomePageState extends State<HomePage> {
 
     bloc.add(FetchTopNews());
     bloc.add(FetchCategoryNews("technology"));
-
-    // bloc.add(FetchSearchNews("q"));
   }
 
   @override
@@ -47,6 +45,10 @@ class _HomePageState extends State<HomePage> {
 
           if (state is NewsCategoryLoadedState) {
             categories = state.categories;
+          }
+
+          if(state is NewsSearchLoadedState){
+            categories = state.searchResult;
           }
 
         },
@@ -122,11 +124,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       filled: true,
                       fillColor: Colors.grey.shade200,
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.grey,
-                        size: 25,
-                      ),
+                      prefixIcon: Icon(Icons.search, color: Colors.grey, size: 25,),
                       suffixIcon: Icon(Icons.mic, color: Colors.grey, size: 25),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -391,7 +389,7 @@ class _HomePageState extends State<HomePage> {
                             margin: EdgeInsets.only(bottom: 8),
                             height: 100, width: 100,
                             decoration: BoxDecoration( color: Colors.blueAccent,
-                              image:DecorationImage(image: NetworkImage(categories[index].urlToImage ?? ""),fit: BoxFit.cover,),
+                              image:DecorationImage(image: NetworkImage(categories[index].urlToImage ?? "assets/images/imagebook.jpg"),fit: BoxFit.cover,),
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
@@ -407,13 +405,6 @@ class _HomePageState extends State<HomePage> {
                                 Row(
                                   mainAxisAlignment:MainAxisAlignment.spaceBetween,
                                   children: [
-                                    //content
-                                    /*SizedBox(
-                                      width:235,
-                                      child: Text(categories[index].content ?? "null", textAlign: TextAlign.center,maxLines:1,overflow: TextOverflow.ellipsis,
-                                        style: TextStyle( fontSize: 14, fontWeight: FontWeight.w700, color: Colors.black),
-                                      ),
-                                    ),*/
                                     //title
                                     SizedBox(
                                       width:235,
@@ -438,7 +429,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
 
-                               /* SizedBox(
+                                /* SizedBox(
                                   width:235,
                                   child: Text(categories[index].url ?? "",textAlign: TextAlign.start, overflow: TextOverflow.ellipsis,
                                     style: TextStyle(color: Colors.blue, fontSize: 10, fontWeight: FontWeight.w800,
@@ -454,18 +445,18 @@ class _HomePageState extends State<HomePage> {
 
                                     openLink(link);
                                   }, child: SizedBox(
-                                    width: 235,
-                                    child: Text(
-                                      categories[index].url ?? "",
-                                      textAlign: TextAlign.start,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                        color: Colors.blue,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w800,
-                                      ),
+                                  width: 235,
+                                  child: Text(
+                                    categories[index].url ?? "",
+                                    textAlign: TextAlign.start,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w800,
                                     ),
                                   ),
+                                ),
                                 ),
 
 
@@ -534,8 +525,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
-
+///url_launcher
   Future<void> openLink(String url) async {
 
     try {
@@ -546,10 +536,7 @@ class _HomePageState extends State<HomePage> {
 
       final Uri uri = Uri.parse(url);
 
-      await launchUrl(
-        uri,
-        mode: LaunchMode.externalApplication,
-      );
+      await launchUrl(uri, mode: LaunchMode.externalApplication,);
 
     } catch (e) {
       print("Error opening link: $e");

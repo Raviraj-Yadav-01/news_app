@@ -15,7 +15,7 @@ class NewsRepository{
   Future<List<ArticleModel>> getTopNews() => api.fetchTopNews();
 
   //search news
-  Future<List<SourceModel>>getSearchNews(String query) => api.fetchSearchNews(query);
+  Future<List<ArticleModel1>>getSearchNews(String query) => api.fetchSearchNews(query);
 
   //category news
   Future<List<ArticleModel1>> getCategoryNews(String category) => api.fetchCategoryNews(category);

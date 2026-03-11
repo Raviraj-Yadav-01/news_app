@@ -7,9 +7,9 @@ import 'news_state.dart';
 
 class NewsBloc extends Bloc<NewsEvent, NewsState>{
 
-  final NewsRepository repo;
+  final NewsRepository apiService;
 
-  NewsBloc(this.repo):super(NewsInitialState()){
+  NewsBloc(this.apiService):super(NewsInitialState()){
 
 
 
@@ -18,7 +18,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>{
       emit(NewsLoadingState());
 
       try {
-        final headlines = await repo.getTopNews();
+        final headlines = await apiService.getTopNews();
         emit(NewsHeadLinesLoadedState(headlines));
       } catch (e) {
         emit(NewsError(e.toString()));
@@ -26,22 +26,27 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>{
     });
 
 
+
+    ///Search
     on<FetchSearchNews>((event, emit)async{
       emit(NewsLoadingState());
       try{
-        final searchResult = await repo.getSearchNews(event.query);
-        emit(NewsSearchLoadedState(searchResult));
+        final response = await apiService.getSearchNews(event.query);
+
+        emit(NewsSearchLoadedState(response));
+
       }catch(errorMessage){
         emit(NewsError(errorMessage.toString()));
       }
     });
 
 
-    ///Gor category news
+
+    ///for category news
     on<FetchCategoryNews>((event, emit)async{
       emit(NewsLoadingState());
       try{
-        final categories = await repo.getCategoryNews(event.category);
+        final categories = await apiService.getCategoryNews(event.category);
         emit(NewsCategoryLoadedState(categories));
       }catch(errorMessage){
         emit(NewsError(errorMessage.toString()));
@@ -51,3 +56,4 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>{
   }
 
 }
+

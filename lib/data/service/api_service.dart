@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/everything_model.dart';
 import '../models/headlines_models.dart';
-import '../models/source_model.dart';
 
 class NewsApiService {
+
 
   /// for Top HeadLines
   Future<List<ArticleModel>> fetchTopNews() async {
@@ -19,9 +19,10 @@ class NewsApiService {
     }
   }
 
+
   ///Category news
   Future<List<ArticleModel1>> fetchCategoryNews(String category) async {
-    String url2 = "https://newsapi.org/v2/everything?q=bitcoin&apiKey=010d2329efdb4769a7840d2f953ad535";
+    String url2 = "https://newsapi.org/v2/everything?q=technology&apiKey=010d2329efdb4769a7840d2f953ad535";
     var response2 = await http.get(Uri.parse(url2));
 
     if (response2.statusCode == 200) {
@@ -34,15 +35,19 @@ class NewsApiService {
 
 
   ///For search News
-  Future<List<SourceModel>> fetchSearchNews(String query) async {
-    String url1 = "https://newsapi.org/v2/top-headlines/sources?apiKey=010d2329efdb4769a7840d2f953ad535";
+  Future<List<ArticleModel1>> fetchSearchNews(String query) async {
+
+    String url1 = "https://newsapi.org/v2/everything?q=$query&apiKey=010d2329efdb4769a7840d2f953ad535";
+
     var response1 = await http.get(Uri.parse(url1));
 
     if (response1.statusCode == 200) {
+
       var searchData = jsonDecode(response1.body);
-      return SourceDataModel.fromJson(searchData).sources;
+
+      return EveryThingData.fromJson(searchData).articles1;
     } else {
-      throw Exception("Failed to load categories");
+      throw Exception("Failed to load search news");
     }
   }
 

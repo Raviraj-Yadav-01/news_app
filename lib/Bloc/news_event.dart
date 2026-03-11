@@ -8,7 +8,7 @@ class FetchTopNews extends NewsEvent{
 
 }
 
-//search news
+//search on tab event news
 class FetchSearchNews extends NewsEvent{
   final String query;
   FetchSearchNews(this.query);

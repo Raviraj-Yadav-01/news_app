@@ -25,7 +25,7 @@ class NewsCategoryLoadedState extends NewsState {
 
 /// Used for Search News
 class NewsSearchLoadedState extends NewsState {
-  final List<SourceModel> searchResult;
+  final List<ArticleModel1> searchResult;
   NewsSearchLoadedState(this.searchResult);
 }
 
