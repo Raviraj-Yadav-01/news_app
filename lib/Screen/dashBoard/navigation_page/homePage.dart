@@ -15,13 +15,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   var searchController = TextEditingController();
 
   List<ArticleModel> headlines = [];
 
   List<ArticleModel1> categories = [];
-
 
   @override
   void initState() {
@@ -36,9 +34,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<NewsBloc, NewsState>(
-
         listener: (context, state) {
-
           if (state is NewsHeadLinesLoadedState) {
             headlines = state.headlines;
           }
@@ -47,14 +43,12 @@ class _HomePageState extends State<HomePage> {
             categories = state.categories;
           }
 
-          if(state is NewsSearchLoadedState){
+          if (state is NewsSearchLoadedState) {
             categories = state.searchResult;
           }
-
         },
 
         builder: (context, state) {
-
           if (headlines.isEmpty && categories.isEmpty) {
             return Center(child: CircularProgressIndicator());
           }
@@ -74,22 +68,28 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(top: 30.0, left: 10, right: 10),
               child: Column(
                 children: [
-
                   SizedBox(
                     height: 50,
                     width: double.infinity,
                     child: Row(
                       children: [
-                        CircleAvatar(radius: 25,
-                          foregroundImage: AssetImage( "assets/image/images.jpg"),
+                        CircleAvatar(
+                          radius: 25,
+                          foregroundImage: AssetImage(
+                            "assets/image/images.jpg",
+                          ),
                         ),
 
                         SizedBox(width: 10),
 
                         Column(
                           children: [
-                            Text( "WelCome", style: TextStyle(color: Colors.grey,
-                                fontSize: 15,fontWeight: FontWeight.w400,
+                            Text(
+                              "WelCome",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
 
@@ -119,20 +119,26 @@ class _HomePageState extends State<HomePage> {
                     controller: searchController,
                     decoration: InputDecoration(
                       hintText: "Let's see what happened today",
-                      hintStyle: TextStyle(color: Colors.grey, fontSize: 16,
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
                       filled: true,
                       fillColor: Colors.grey.shade200,
-                      prefixIcon: Icon(Icons.search, color: Colors.grey, size: 25,),
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: Colors.grey,
+                        size: 25,
+                      ),
                       suffixIcon: Icon(Icons.mic, color: Colors.grey, size: 25),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,
                       ),
                     ),
-                    onSubmitted: (query){
-                      if(query.isNotEmpty){
+                    onSubmitted: (query) {
+                      if (query.isNotEmpty) {
                         context.read<NewsBloc>().add(FetchSearchNews(query));
                       }
                     },
@@ -142,13 +148,27 @@ class _HomePageState extends State<HomePage> {
 
                   Row(
                     children: [
-                      Text("Breaking News !", style: TextStyle(color: Colors.black,
-                          fontSize: 20, fontWeight: FontWeight.bold)),
+                      Text(
+                        "Breaking News !",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
 
                       SizedBox(height: 15),
                       Spacer(),
 
-                      Text("See all", style: TextStyle(color: Colors.blue, fontSize: 15, fontWeight: FontWeight.w500,),), SizedBox(height: 15),
+                      Text(
+                        "See all",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(height: 15),
                     ],
                   ),
                   SizedBox(height: 12),
@@ -168,7 +188,9 @@ class _HomePageState extends State<HomePage> {
                             width: 325,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: NetworkImage(headlines[index].urlToImage ?? ""),
+                                image: NetworkImage(
+                                  headlines[index].urlToImage ?? "",
+                                ),
                                 fit: BoxFit.cover,
                               ),
                               color: Colors.blueAccent,
@@ -293,14 +315,9 @@ class _HomePageState extends State<HomePage> {
                                     SizedBox(
                                       width: 110,
                                       child: Text(
-                                        headlines[index].publishedAt ?? "",
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
+                                        headlines[index].publishedAt ?? "", maxLines: 1,
+                                        overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,
+                                        style: TextStyle( color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                     ),
@@ -316,9 +333,14 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       child: Row(
                                         children: [
-                                          Icon(Icons.favorite, color: Colors.red, size: 20),
+                                          Icon( Icons.favorite, color: Colors.red, size: 20),
 
-                                          Text("5.2k", style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500,
+                                          Text(
+                                            "5.2k",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                           ),
                                         ],
@@ -329,7 +351,8 @@ class _HomePageState extends State<HomePage> {
                                 SizedBox(height: 5),
 
                                 ///Third Line
-                                Text(headlines[index].description ?? "",
+                                Text(
+                                  headlines[index].description ?? "",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -350,17 +373,19 @@ class _HomePageState extends State<HomePage> {
 
                   Column(
                     children: [
-
                       Row(
                         children: [
-                          Text("Trending Right Now",
+                          Text(
+                            "Trending Right Now",
                             style: TextStyle(
-                              color: Colors.black, fontSize: 20,
+                              color: Colors.black,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Spacer(),
-                          Text("See all",
+                          Text(
+                            "See all",
                             style: TextStyle(
                               color: Colors.blue,
                               fontSize: 15,
@@ -370,11 +395,10 @@ class _HomePageState extends State<HomePage> {
                           SizedBox(height: 15),
                         ],
                       ),
-
                     ],
                   ),
                   SizedBox(height: 11),
-/********************************************************/
+                  /********************************************************/
                   /// Category News
                   ListView.builder(
                     shrinkWrap: true,
@@ -384,36 +408,48 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       return Row(
                         children: [
-
                           Container(
                             margin: EdgeInsets.only(bottom: 8),
-                            height: 100, width: 100,
-                            decoration: BoxDecoration( color: Colors.blueAccent,
-                              image:DecorationImage(image: NetworkImage(categories[index].urlToImage ?? "assets/images/imagebook.jpg"),fit: BoxFit.cover,),
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: Colors.blueAccent,
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  categories[index].urlToImage ??
+                                      "assets/images/imagebook.jpg",
+                                ),
+                                fit: BoxFit.cover,
+                              ),
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
                           SizedBox(width: 5),
 
                           SizedBox(
-                            height:100,
+                            height: 100,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-
                                 ///first row
                                 Row(
-                                  mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     //title
                                     SizedBox(
-                                      width:235,
-                                      child: Text(categories[index].title ?? "", textAlign: TextAlign.start, overflow: TextOverflow.ellipsis,
-                                        style: TextStyle( fontSize: 15, fontWeight: FontWeight.w700, color: Colors.black,
+                                      width: 235,
+                                      child: Text(
+                                        categories[index].title ?? "",
+                                        textAlign: TextAlign.start,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ),
-
                                   ],
                                 ),
                                 SizedBox(height: 1),
@@ -421,87 +457,93 @@ class _HomePageState extends State<HomePage> {
                                 ///secondRow
                                 Expanded(
                                   child: SizedBox(
-                                    width:235,
-                                    child: Text(categories[index].description ?? "",textAlign: TextAlign.start, maxLines:2, overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(color: Colors.black, fontSize: 10, fontWeight: FontWeight.w800,
+                                    width: 235,
+                                    child: Text(
+                                      categories[index].description ?? "",
+                                      textAlign: TextAlign.start,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w800,
                                       ),
                                     ),
                                   ),
                                 ),
 
-                                /* SizedBox(
-                                  width:235,
-                                  child: Text(categories[index].url ?? "",textAlign: TextAlign.start, overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(color: Colors.blue, fontSize: 10, fontWeight: FontWeight.w800,
-                                    ),
-                                  ),
-                                ),*/
-
                                 InkWell(
                                   onTap: () {
                                     String link = categories[index].url;
-
                                     print("URL = $link");
-
                                     openLink(link);
-                                  }, child: SizedBox(
-                                  width: 235,
-                                  child: Text(
-                                    categories[index].url ?? "",
-                                    textAlign: TextAlign.start,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      color: Colors.blue,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w800,
+                                  },
+                                  child: SizedBox(
+                                    width: 235,
+                                    child: Text(
+                                      categories[index].url ?? "",
+                                      textAlign: TextAlign.start,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w800,
+                                      ),
                                     ),
                                   ),
                                 ),
-                                ),
-
 
                                 SizedBox(height: 1),
 
                                 ///third row
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
-
-                                    CircleAvatar( radius: 12,
+                                    CircleAvatar(
+                                      radius: 12,
                                       backgroundColor: Colors.blue,
-                                      foregroundImage: NetworkImage(categories[index].urlToImage ?? ""),
+                                      foregroundImage: NetworkImage(
+                                        categories[index].urlToImage ?? "",
+                                      ),
                                     ),
                                     SizedBox(width: 1),
 
                                     ///author
-                                    SizedBox( width:80, child: Text(categories[index].author ?? "",
-                                      overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,
-                                      style: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500,),
-                                    )),
+                                    SizedBox(
+                                      width: 80,
+                                      child: Text(
+                                        categories[index].author ?? "", overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle( color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500,),
+                                      ),
+                                    ),
                                     SizedBox(width: 5),
 
                                     ///likes
                                     Container(height: 30, width: 50,
-                                      decoration: BoxDecoration(
-                                        color: Colors.transparent, borderRadius: BorderRadius.circular(10),
-                                      ), child: Text(categories[index].publishedAt, maxLines : 1,
-                                        style: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500),
+                                      decoration: BoxDecoration( color: Colors.transparent, borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Text( categories[index].publishedAt, maxLines: 1,
+                                        style: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
 
                                     ///Comments
-                                    Container(height: 30, width: 50,
+                                    Container(
+                                      height: 30, width: 50,
                                       decoration: BoxDecoration(
-                                        color: Colors.transparent,
-                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.transparent, borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: Row(
                                         children: [
-                                          Icon(Icons.message_outlined, color: Colors.red, size: 20),
-                                          Text("3.5k",style: TextStyle(
-                                            color: Colors.black, fontSize: 12,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                          Icon( Icons.message_outlined, color: Colors.red, size: 20,),
+                                          Text("3.5k", style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -517,7 +559,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-
             ),
           );
         },
@@ -525,19 +566,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-///url_launcher
+  ///url_launcher
   Future<void> openLink(String url) async {
-
     try {
-
       if (!url.startsWith("http")) {
         url = "https://$url";
       }
-
       final Uri uri = Uri.parse(url);
-
-      await launchUrl(uri, mode: LaunchMode.externalApplication,);
-
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     } catch (e) {
       print("Error opening link: $e");
     }

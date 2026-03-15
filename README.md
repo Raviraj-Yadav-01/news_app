@@ -1,16 +1,61 @@
-# news_app
 
-A new Flutter project.
+# 📰 Flutter News Application
 
-## Getting Started
+![Flutter](https://img.shields.io/badge/Flutter-Framework-blue)
+![Dart](https://img.shields.io/badge/Dart-Language-blue)
+![API](https://img.shields.io/badge/API-NewsAPI-green)
 
-This project is a starting point for a Flutter application.
+## 📌 Overview
 
-A few resources to get you started if this is your first Flutter project:
+A Flutter-based News Application that fetches real-time news using a 
+News API and displays them in a clean and user-friendly interface. 
+The application allows users to explore trending news, read detailed articles, 
+and browse different categories.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## ✨ Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Feature         | Description                                      |
+| --------------- | ------------------------------------------------ |
+| Latest News     | Fetches real-time news from API                  |
+| Categories      | Browse news based on different topics            |
+| Article Details | Displays full article with image and description |
+| Explore Section | Discover trending and popular news               |
+| Responsive UI   | Smooth and clean Flutter UI                      |
+
+## 🛠️ Tech Stack
+
+* Flutter
+* Dart
+* REST API
+* HTTP Package
+
+## 📸 Screenshots
+
+*Add your app screenshots here*
+
+## 🚀 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/Raviraj-Yadav-01/news_app.git
+```
+
+Install dependencies
+
+```bash
+flutter pub get
+```
+
+Run the application
+
+```bash
+flutter run
+```
+
+## 👨‍💻 Author
+
+**RaviRaj Yadav**
+
+GitHub:
+https://github.com/Raviraj-Yadav-01
