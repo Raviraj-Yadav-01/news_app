@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ClaudeService {
-  static const String _apiKey = ''; // 🔑 sirf code mein daalo
+  static const String _apiKey = '';
   static const String _url = 'https://api.anthropic.com/v1/messages';
 
   static Future<String> summarizeArticle(String content) async {

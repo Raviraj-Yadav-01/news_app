@@ -5,8 +5,7 @@ import 'package:http/http.dart' as http;
 class GeminiService {
   static const String _apiKey = '';
  
-  static const String _url =
-      'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent';
+  static const String _url = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent';
 
   static Future<String> summarizeArticle(String content, {required String mode}) async {
     try {
