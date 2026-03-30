@@ -6,6 +6,7 @@ import '../../../Bloc/news_event.dart';
 import '../../../Bloc/news_state.dart';
 import '../../../data/models/everything_model.dart';
 import '../../../data/models/headlines_models.dart';
+import 'explore_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,7 +26,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     final bloc = context.read<NewsBloc>();
-
     bloc.add(FetchTopNews());
     bloc.add(FetchCategoryNews("technology"));
   }
@@ -315,9 +315,14 @@ class _HomePageState extends State<HomePage> {
                                     SizedBox(
                                       width: 110,
                                       child: Text(
-                                        headlines[index].publishedAt ?? "", maxLines: 1,
-                                        overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,
-                                        style: TextStyle( color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500,
+                                        headlines[index].publishedAt ?? "",
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                     ),
@@ -333,7 +338,11 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       child: Row(
                                         children: [
-                                          Icon( Icons.favorite, color: Colors.red, size: 20),
+                                          Icon(
+                                            Icons.favorite,
+                                            color: Colors.red,
+                                            size: 20,
+                                          ),
 
                                           Text(
                                             "5.2k",
@@ -473,10 +482,24 @@ class _HomePageState extends State<HomePage> {
                                 ),
 
                                 InkWell(
-                                  onTap: () {
+                                 /* onTap: () {
                                     String link = categories[index].url;
                                     print("URL = $link");
                                     openLink(link);
+                                  },*/
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ExplorePage(
+                                          article: categories[index],
+                                        ),
+                                      ),
+
+                                    );
+                                    /*String link = categories[index].url;
+                                    print("URL = $link");
+                                    openLink(link);*/
                                   },
                                   child: SizedBox(
                                     width: 235,
@@ -513,33 +536,55 @@ class _HomePageState extends State<HomePage> {
                                     SizedBox(
                                       width: 80,
                                       child: Text(
-                                        categories[index].author ?? "", overflow: TextOverflow.ellipsis,
+                                        categories[index].author ?? "",
+                                        overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.center,
-                                        style: TextStyle( color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500,),
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
                                     SizedBox(width: 5),
 
                                     ///likes
-                                    Container(height: 30, width: 50,
-                                      decoration: BoxDecoration( color: Colors.transparent, borderRadius: BorderRadius.circular(10),
+                                    Container(
+                                      height: 30,
+                                      width: 50,
+                                      decoration: BoxDecoration(
+                                        color: Colors.transparent,
+                                        borderRadius: BorderRadius.circular(10),
                                       ),
-                                      child: Text( categories[index].publishedAt, maxLines: 1,
-                                        style: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500,
+                                      child: Text(
+                                        categories[index].publishedAt,
+                                        maxLines: 1,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                     ),
 
                                     ///Comments
                                     Container(
-                                      height: 30, width: 50,
+                                      height: 30,
+                                      width: 50,
                                       decoration: BoxDecoration(
-                                        color: Colors.transparent, borderRadius: BorderRadius.circular(10),
+                                        color: Colors.transparent,
+                                        borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: Row(
                                         children: [
-                                          Icon( Icons.message_outlined, color: Colors.red, size: 20,),
-                                          Text("3.5k", style: TextStyle(
+                                          Icon(
+                                            Icons.message_outlined,
+                                            color: Colors.red,
+                                            size: 20,
+                                          ),
+                                          Text(
+                                            "3.5k",
+                                            style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 12,
                                               fontWeight: FontWeight.w500,

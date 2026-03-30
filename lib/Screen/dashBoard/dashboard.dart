@@ -17,7 +17,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
 
   List<Widget> navPages = [
     HomePage(),
-    ExplorePage(),
+    ExplorePage(article:null),
     NotificationPage(),
     SettingPage(),
   ];
