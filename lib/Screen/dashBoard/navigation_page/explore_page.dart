@@ -4,7 +4,8 @@ import '../../../data/models/everything_model.dart';
 import '../../../data/service/cloudai_service.dart';
 
 
-class ExplorePage extends StatefulWidget {
+class ExplorePage extends StatefulWclear
+idget {
   final ArticleModel1? article;
   const ExplorePage({super.key, this.article});
 

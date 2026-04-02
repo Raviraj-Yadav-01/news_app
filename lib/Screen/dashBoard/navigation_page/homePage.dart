@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: BlocConsumer<NewsBloc, NewsState>(
         listener: (context, state) {
           if (state is NewsHeadLinesLoadedState) {
@@ -408,6 +409,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(height: 11),
                   /********************************************************/
+
                   /// Category News
                   ListView.builder(
                     shrinkWrap: true,
@@ -425,9 +427,7 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.blueAccent,
                               image: DecorationImage(
                                 image: NetworkImage(
-                                  categories[index].urlToImage ??
-                                      "assets/images/imagebook.jpg",
-                                ),
+                                  categories[index].urlToImage ?? "assets/image/imagebook.jpg" ?? "assets/image/imagebook.jpg"),
                                 fit: BoxFit.cover,
                               ),
                               borderRadius: BorderRadius.circular(10),
